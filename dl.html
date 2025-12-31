@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Browse E-Books</title>
+  <style>
+    /* General Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://images.unsplash.com/photo-1512820790803-83ca734da794'); /* Royalty-free image */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      color: #fff;
+    }
+
+    header {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2em;
+    }
+
+    nav a {
+      margin: 0 10px;
+      color: #00aced;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      margin: 20px;
+      border-radius: 10px;
+    }
+
+    #searchBox {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .book-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .book {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+      width: 200px;
+      text-align: center;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .book img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    .book h3 {
+      font-size: 1.1em;
+      margin: 10px 0 5px;
+      color: #fff;
+    }
+
+    .book p {
+      margin-bottom: 10px;
+      font-size: 0.9em;
+    }
+
+    .book a {
+      display: inline-block;
+      padding: 8px 12px;
+      background-color: #00aced;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .book a:hover {
+      background-color: #0084b4;
+    }
+
+    @media (max-width: 600px) {
+      .book-gallery {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Browse E-Books</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Books</a>
+    </nav>
+  </header>
+
+  <main>
+    <input type="text" id="searchBox" placeholder="Search by title or author..." onkeyup="searchBooks()"/>
+
+    <section class="book-gallery" id="bookGallery">
+      <div class="book">
+        <img src="https://via.placeholder.com/150x220?text=Book+1" alt="Cover of aws-cli_v2 Book by Redhat">
+        <h3>aws-cli_v2 Book</h3>
+        <p>Author: Redhat Inc Corp.</p>
+        <a href="ebooks/sample-book.pdf" download>View & Download</a>
+      </div>
+
+      <div class="book">
+        <img src="https://via.placeholder.com/150x220?text=Book+2" alt="Cover of aws-LabBook by Amazon">
+        <h3>aws-cli_v2 Book</h3>
+        <p>Author: Amazon.</p>
+        <a href="ebooks/aws-LabBook.pdf" download>View & Download</a>
+      </div>
+
+      <!-- Add more book cards below -->
+      <!-- Example:
+      <div class="book">
+        <img src="images/your-cover.jpg" alt="Cover of [Title]">
+        <h3>Your Book Title</h3>
+        <p>Author: Your Name</p>
+        <a href="ebooks/your-book.pdf" download>View & Download</a>
+      </div>
+      -->
+    </section>
+  </main>
+
+  <script>
+    function searchBooks() {
+      const query = document.getElementById('searchBox').value.toLowerCase();
+      const books = document.querySelectorAll('.book');
+
+      books.forEach(book => {
+        const title = book.querySelector('h3').textContent.toLowerCase();
+        const author = book.querySelector('p').textContent.toLowerCase();
+        if (title.includes(query) || author.includes(query)) {
+          book.style.display = '';
+        } else {
+          book.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
